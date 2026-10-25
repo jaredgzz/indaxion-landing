@@ -58,6 +58,9 @@ try {
   check('2. .env.live / .env.production.local sin --mode live (incluso en main) -> leads=test', r.ok && r.leads === 'test', r.output)
   for (const file of createdEnvFiles.splice(0)) rmSync(file)
 
+  r = build({ env: { ...FAKE_SUPABASE, VERCEL: '1', VERCEL_ENV: 'production' } })
+  check('2b. build con VERCEL_ENV=production (Vercel retirado) -> leads=test', r.ok && r.leads === 'test', r.output)
+
   r = build({ mode: 'live', env: { ...REAL_LOOKING_SUPABASE, CI: 'true' } })
   check('3. --mode live en CI sin WORKERS_CI -> falla', !r.ok && /no autorizado/.test(r.output), r.output)
 

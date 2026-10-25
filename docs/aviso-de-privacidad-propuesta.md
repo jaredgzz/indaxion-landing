@@ -23,7 +23,6 @@ Proveedores que tratan esos datos por cuenta de InDaxion:
 
 - **Supabase**: base de datos donde se guardan los leads.
 - **Cloudflare**: hospedaje del sitio; registra datos técnicos como la IP.
-- **Vercel**: hospedaje anterior, mientras dure la migración a Cloudflare.
 
 Terceros que intervienen solo si el visitante los usa o al cargar la página:
 

@@ -5,18 +5,15 @@
  *
  * - `mode` = modo de Vite. Solo `vite build --mode live` (`npm run build:live`,
  *   usado únicamente por el deploy de producción en Cloudflare) guarda.
- * - `vercelEnv` = VERCEL_ENV, solo si el build corre en Vercel. Compatibilidad
- *   temporal mientras Vercel siga publicando: Production guarda.
  * - `override` (VITE_LEADS_MODE): solo 'test' cuenta, para forzar la simulación.
  *   'live' se ignora: ninguna variable puede habilitar los envíos reales.
  *
  * Es un control de despliegue, no de seguridad: la clave anon es pública y la
  * protección de la tabla `leads` depende de RLS en Supabase.
  */
-export function resolveLeadsMode({ mode, vercelEnv, override }) {
+export function resolveLeadsMode({ mode, override }) {
   if (override === 'test') return 'test'
   if (mode === 'live') return 'live'
-  if (vercelEnv === 'production') return 'live'
   return 'test'
 }
 

@@ -11,13 +11,10 @@ const SUPABASE = { VITE_SUPABASE_URL: 'https://proyecto.supabase.co', VITE_SUPAB
 test.describe('Modo de los formularios', () => {
   test('solo un build autorizado guarda leads (fail-closed)', () => {
     expect(resolveLeadsMode({ mode: 'live' })).toBe('live')
-    expect(resolveLeadsMode({ mode: 'production', vercelEnv: 'production' })).toBe('live')
     // Preview, local, dev y entornos desconocidos simulan
     expect(resolveLeadsMode({ mode: 'production' })).toBe('test')
     expect(resolveLeadsMode({ mode: 'development' })).toBe('test')
-    expect(resolveLeadsMode({ mode: 'production', vercelEnv: 'preview' })).toBe('test')
-    expect(resolveLeadsMode({ mode: 'production', vercelEnv: 'development' })).toBe('test')
-    expect(resolveLeadsMode({ mode: 'otro', vercelEnv: 'otro' })).toBe('test')
+    expect(resolveLeadsMode({ mode: 'otro' })).toBe('test')
     expect(resolveLeadsMode({})).toBe('test')
     // VITE_LEADS_MODE solo puede forzar la simulación
     expect(resolveLeadsMode({ mode: 'live', override: 'test' })).toBe('test')
