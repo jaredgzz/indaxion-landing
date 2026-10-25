@@ -98,8 +98,7 @@ Modo de los formularios, en `src/lib/leadsMode.js`. Falla cerrado:
 | Build | Leads |
 |---|---|
 | `npm run build:live` (solo el deploy de producción) | guarda |
-| Vercel Production (temporal, mientras siga Vercel) | guarda |
-| Worker Preview, Vercel Preview, `npm run build` local, `npm run dev`, entorno desconocido | simula |
+| Worker Preview, `npm run build` local, `npm run dev`, entorno desconocido | simula |
 
 - `build:live` falla salvo en Workers Builds sobre `main` con las dos variables de Supabase,
   o en las E2E locales contra el Supabase falso. Las pruebas están en `npm run test:build-modes`.
@@ -111,21 +110,10 @@ Modo de los formularios, en `src/lib/leadsMode.js`. Falla cerrado:
 - Es un control de despliegue, no de seguridad. La clave anon es pública, y lo que
   protege la tabla `leads` es RLS.
 
-### Vercel (temporal, hasta decidir su retiro)
+### Vercel (retirado)
 
-**Revisado el 2026-10-10, sin cambios:** `VITE_SUPABASE_URL` y `VITE_SUPABASE_ANON_KEY`
-están definidas para «Production and Preview». Es decir, una Preview usa la misma
-base de producción. *Enable access to System Environment Variables* está activo.
-
-- **Production** debe tener `VITE_SUPABASE_URL` y `VITE_SUPABASE_ANON_KEY`.
-- **Preview** no puede crear leads reales: en Vercel el código solo guarda cuando
-  `VERCEL=1` y `VERCEL_ENV=production` (ver `src/lib/leadsMode.js`). En una Preview, los
-  formularios muestran «Vista previa» y simulan el envío.
-- Para que esto funcione, en Vercel → Settings → Environment Variables debe estar
-  activo *Automatically expose System Environment Variables* (activo por defecto).
-  Comprobación rápida: en la URL de Preview, el formulario de contacto debe mostrar
-  el aviso «Vista previa: este formulario no envía datos».
-- El workflow `supabase-keepalive.yml` no cambia: sigue leyendo `public.keepalive`.
+El proyecto de Vercel se borró el 2026-10-25. El sitio solo se publica en Cloudflare
+y ninguna variable de Vercel habilita leads (prueba 2b de `npm run test:build-modes`).
 
 ## 3. Aviso de privacidad
 
@@ -169,9 +157,9 @@ publicar.
 
 ## 5. Otros pendientes
 
-- La página 404 se muestra con estado HTTP 200 (el rewrite de Vercel sirve
-  `index.html` en cualquier ruta). Lleva `noindex` para que no se indexe. Un 404
-  real requiere listar las rutas en `vercel.json`. Es opcional.
+- La página 404 se muestra con estado HTTP 200 (`not_found_handling:
+  single-page-application` sirve `index.html` en cualquier ruta). Lleva `noindex`
+  para que no se indexe. Un 404 real requiere manejar las rutas en el Worker. Es opcional.
 - Dominio propio `indaxion.com` (registrado en Cloudflare Registrar):
   - La raíz es un Custom Domain del Worker, declarado en `routes` de
     `wrangler.jsonc`; se crea o actualiza con cada deploy de `main`.

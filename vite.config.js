@@ -5,17 +5,16 @@ import { resolveLeadsMode, assertLiveBuildAllowed } from './src/lib/leadsMode.js
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
-  // process.env (variables de Workers Builds / Vercel) + archivos .env del modo
+  // process.env (variables de Workers Builds) + archivos .env del modo
   const env = loadEnv(mode, process.cwd(), '')
   assertLiveBuildAllowed({ mode, env })
 
-  // Solo `--mode live` (o Vercel Production, temporal) guarda leads; ver src/lib/leadsMode.js
+  // Solo `--mode live` guarda leads; ver src/lib/leadsMode.js
   const leadsMode = resolveLeadsMode({
     mode,
-    vercelEnv: env.VERCEL === '1' ? env.VERCEL_ENV : undefined,
     override: env.VITE_LEADS_MODE,
   })
-  const sha = (env.WORKERS_CI_COMMIT_SHA || env.VERCEL_GIT_COMMIT_SHA || '').slice(0, 12)
+  const sha = (env.WORKERS_CI_COMMIT_SHA || '').slice(0, 12)
 
   return {
     plugins: [

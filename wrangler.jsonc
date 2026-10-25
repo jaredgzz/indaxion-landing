@@ -6,7 +6,7 @@
   "compatibility_date": "2026-10-01",
   "assets": {
     "directory": "./dist",
-    // Igual que el rewrite de vercel.json: toda ruta sin archivo sirve index.html
+    // Toda ruta sin archivo sirve index.html (SPA)
     "not_found_handling": "single-page-application"
   },
   // Dominio propio (Custom Domain: Cloudflare crea el DNS y el certificado al desplegar).

@@ -444,7 +444,7 @@ const es = {
       notice: 'Revisa que tus datos sean correctos y confirma el envío.',
       submit: 'Confirmar y enviar',
     },
-    // Vista previa (Worker Preview, Vercel Preview, build local): no se envía nada
+    // Vista previa (Worker Preview, build local): no se envía nada
     preview: {
       notice: 'Vista previa: este formulario no envía datos. Puedes probarlo sin crear contactos reales.',
       successTitle: 'Prueba completada',
@@ -488,7 +488,7 @@ const es = {
   // actualizar el texto y la fecha.
   privacy: {
     title: 'Aviso de privacidad',
-    updated: 'Última actualización: 11 de octubre de 2026',
+    updated: 'Última actualización: 25 de octubre de 2026',
     intro:
       'David Jared González Vásquez, persona física con actividad empresarial que opera con el nombre comercial InDaxion («InDaxion»), con domicilio en Escobedo, Nuevo León, México, es responsable del tratamiento de los datos personales que nos proporcionas a través de este sitio web, de acuerdo con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares.',
     sections: [
@@ -512,7 +512,7 @@ const es = {
       {
         title: 'Proveedores que tratan tus datos',
         paragraphs: [
-          'Para operar este sitio y responderte usamos proveedores de servicios que tratan tus datos solo por cuenta de InDaxion: Supabase (base de datos donde se guardan los mensajes del formulario), Cloudflare y Vercel (hospedaje del sitio) y Microsoft (correo electrónico). Sus servidores pueden estar ubicados fuera de México.',
+          'Para operar este sitio y responderte usamos proveedores de servicios que tratan tus datos solo por cuenta de InDaxion: Supabase (base de datos donde se guardan los mensajes del formulario), Cloudflare (hospedaje del sitio) y Microsoft (correo electrónico). Sus servidores pueden estar ubicados fuera de México.',
           'Al cargar el sitio, Google Fonts recibe tu dirección IP para entregar la tipografía. Si decides escribirnos por WhatsApp, esa conversación también se rige por el aviso de privacidad de WhatsApp.',
           'No transferimos tus datos a terceros sin tu consentimiento, salvo en los casos previstos por la ley.',
         ],
