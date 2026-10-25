@@ -1,4 +1,7 @@
-# Keep-alive diario de Supabase
+# Keep-alive diario de Supabase (respaldo)
+#
+# El ping principal es el Worker `indaxion-supabase-keepalive` (carpeta keepalive/),
+# con Cron Trigger cada 6 horas. Este workflow queda como respaldo diario.
 #
 # Los proyectos gratuitos de Supabase se pausan tras ~7 días sin actividad externa.
 # Este workflow hace una lectura ligera a la tabla auxiliar `public.keepalive`

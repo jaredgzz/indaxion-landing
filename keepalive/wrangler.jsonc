@@ -1,0 +1,16 @@
+// Worker aparte (no toca indaxion-landing): solo un Cron Trigger que lee la tabla
+// `public.keepalive` de Supabase para que el proyecto gratuito no se pause.
+// Despliegue manual desde esta carpeta: `npx wrangler deploy`.
+// Secretos (una sola vez): `npx wrangler secret put SUPABASE_URL` y `SUPABASE_ANON_KEY`;
+// opcional `HEALTHCHECK_URL` (healthchecks.io u otro dead-man's switch).
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "indaxion-supabase-keepalive",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-01",
+  // Cada 6 horas; el workflow de GitHub queda como respaldo diario
+  "triggers": { "crons": ["23 */6 * * *"] },
+  // Sin rutas públicas: solo corre por cron
+  "workers_dev": false,
+  "observability": { "enabled": true }
+}
